@@ -1,0 +1,36 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.pagination{
+    margin-left: 110px;
+}
+table {
+    background-color: blue;
+    width: 56%;
+}
+td{
+    border-color: blue;
+    background-color: rgb(170, 166, 166);
+}
+th{
+    background-color: rgb(170, 166, 166);
+    border-color: blue;
+    height: 10px;
+    
+}
+
+button{
+    background-color: rgb(124, 158, 233);
+    border-radius: 4px;
+}
+
+.filter{
+    background-color: rgb(124, 158, 233);
+    border-radius: 4px;
+}
+
+.edit, .delet{
+    padding: 4px;
+}

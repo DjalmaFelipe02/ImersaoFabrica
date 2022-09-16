@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Atualizar Registro do Aluno</h1>
+    <hr align="left" color="black" width="300px" size="3px">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"><i class="fa-regular fa-floppy-disk"></i> Salvar</button>
+    </form>
+    <br>
+    {% if student %}
+    <button class="delet"><a href="{% url 'delete_student' student.id%}" text-decoration: none><i class='far fa-trash-alt fa-lg text-danger float-right'></i>  Deletar</a></button>
+    {% endif %}
+{%endblock%}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load app_extras %}
+
+
+<h1>Procure por um Estudante ou Registre:</h1> 
+<hr align="left" color="black" width="300px" size="3px">
+<h2>Procure um Aluno:</h2>
+<form method="GET">
+    {{filter_students.form.as_p}}
+    <h4>***OBS- A Data deve ser digitada em formato Norte-Americano(mês/dia/ano).***<h4>
+    <input class="filter" type="submit" value="Buscar">
+</form><br>
+<hr align="left" color="black" width="300px" size="3px">
+<table border= "1px">
+    <caption><h2>Alunos</h2></caption>
+    <tr>
+      <th><i class="fa-solid fa-user"></i> Nome</th>
+      <th>Idade</th>
+      <th>Nota</th>
+      <th>Período</th>
+      <th><i class="fa-regular fa-calendar-days"></i> Data de Registro</th>
+      <th><i class="fa-regular fa-calendar-days"></i> Data de Edição</th>
+      <th>Gerenciar</th>
+    </tr>
+    {% for student in student_page_obj %}
+    <tr align= 'center'>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.note}}</td>
+            <td>{{student.period}}</th>
+            <td>{{student.data}}</td>
+            <td>{{student.data_update}}</td>
+            <td>
+                <button class="edit"><a href="{% url 'update_student' student.id%}"> Editar</a></button> |
+                <button class="delet"><a href="{% url 'delete_student' student.id%}"> Deletar</a></button>
+            </td>
+    </tr>
+    {% endfor %}    
+  </table>
+    <br>
+    <div class="pagination">
+        <span class="step-links">
+            {% if student_page_obj.has_previous %}
+            <button><a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo; Primeiro</a></button> ||                            <!--O "&laquo" SE REFERE A ESSE SIMBLO: " « "-->
+            <button><a href="{% my_url student_page_obj.previous_page_number 'page' request.GET.urlencode %}">Anterior</a></button>
+            {% endif %}
+
+            <span class="current">
+                Página {{student_page_obj.number}} de {{student_page_obj.paginator.num_pages}}.
+            </span>
+
+            {% if student_page_obj.has_next %}
+            <button><a href="{% my_url student_page_obj.next_page_number 'page' request.GET.urlencode %}">Próximo</a></button> ||
+                <button><a href="{% my_url student_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Ultimo &raquo;</a></button>
+                <!--O "&raquo" SE REFERE A ESSE SIMBLO: " » "-->
+            {% endif %}
+        </span> 
+    </div>
+    <br>
+    <hr align="left" color="black" width="200px" size="3px">
+    <h2>Registre aqui:</h2>
+    <button><a href="{% url 'register_student'%}">Registrar Novo Aluno</a></button>
+{% endblock  %}
+

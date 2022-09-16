@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Você tem certeza que deseja remover o Aluno(a) {{ student.name  }} ?</h2>
+        <hr align="left" color="black" width="100px" size="3px">
+        <br>
+        <button type="submit"><i class="fa-solid fa-check"></i> Confirmar</button>
+    </form>
+ {%endblock%}   
